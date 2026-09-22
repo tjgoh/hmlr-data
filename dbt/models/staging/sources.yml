@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: hmlr
+    schema: public
+
+    tables:
+      - name: price_paid

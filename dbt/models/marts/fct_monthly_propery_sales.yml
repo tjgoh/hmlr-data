@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fct_monthly_property_sales
+    description: >
+      Monthly property transaction and price statistics grouped by district
+      and property type. One row represents a unique combination of
+      transaction month, district, and property type.
+
+    columns:
+      - name: transaction_month
+        description: The month in which the property transactions completed.
+        data_tests:
+          - not_null
+
+      - name: district
+        description: The district in which the properties are located.
+        data_tests:
+          - not_null
+
+      - name: property_type
+        description: The type of property included in the aggregated statistics.
+        data_tests:
+          - not_null
+
+      - name: transaction_count
+        description: >
+          The number of property transactions for the given month,
+          district, and property type.
+        data_tests:
+          - not_null
+
+      - name: average_price
+        description: >
+          The average property transaction price for the given month,
+          district, and property type.
+        data_tests:
+          - not_null
+
+      - name: median_price
+        description: >
+          The median property transaction price for the given month,
+          district, and property type, calculated using the 50th percentile.
+        data_tests:
+          - not_null

@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: stg_price_paid
+    description: >
+      HM Land Registry Price Paid Data with basic cleaning, type casting,
+      column renaming, and code-to-description mappings applied.
+      One row represents one property transaction.
+
+    columns:
+      - name: transaction_id
+        description: The unique identifier for each property transaction.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: price
+        description: The sale price of the property in pounds sterling.
+        data_tests:
+          - not_null
+
+      - name: date_of_transfer
+        description: The date on which the property sale completed.
+        data_tests:
+          - not_null
+
+      - name: property_type
+        description: The type of property sold.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Detached
+                  - Semi-Detached
+                  - Terraced
+                  - Flat/Maisonette
+                  - Other
+                  - Unknown
+
+      - name: old_new
+        description: Indicates whether the property was newly built or an established property.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - New
+                  - Old
+                  - Unknown
+
+      - name: duration
+        description: The tenure of the property.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Freehold
+                  - Leasehold
+                  - Unknown
+
+      - name: primary_addressable_object_name
+        description: >
+          Primary Addressable Object Name (PAON), typically the house number
+          or property name.
+
+      - name: secondary_addressable_object_name
+        description: >
+          Secondary Addressable Object Name (SAON), typically a flat,
+          unit, or sub-building identifier where applicable.
+
+      - name: postcode
+        description: The postcode recorded for the property at the time of the transaction.
+
+      - name: street
+        description: The street associated with the property.
+
+      - name: locality
+        description: The locality associated with the property, where provided.
+
+      - name: town_city
+        description: The town or city associated with the property.
+
+      - name: district
+        description: The district associated with the property.
+
+      - name: county
+        description: The county associated with the property.
+
+      - name: price_paid_category
+        description: >
+          The HM Land Registry Price Paid Data category assigned to the transaction.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Standard
+                  - Additional
+                  - Unknown
+
+      - name: record_status
+        description: >
+          The record status supplied by HM Land Registry. In monthly files,
+          A represents an addition, C a change, and D a deletion.

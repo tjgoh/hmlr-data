@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: int_property_sales_with_periods
+    description: >
+      Intermediate property sales model based on the cleaned HMLR staging data.
+      Adds reusable month and year fields derived from the property transaction date.
+      One row represents one property transaction.
+
+    columns:
+      - name: transaction_id
+        description: The unique identifier for each property transaction.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: price
+        description: The sale price of the property in pounds sterling.
+        data_tests:
+          - not_null
+
+      - name: date_of_transfer
+        description: The date on which the property transaction completed.
+        data_tests:
+          - not_null
+
+      - name: property_type
+        description: The type of property sold.
+
+      - name: old_new
+        description: Indicates whether the property was newly built or an established property.
+
+      - name: duration
+        description: The tenure of the property.
+
+      - name: primary_addressable_object_name
+        description: Primary Addressable Object Name, typically the house number or property name.
+
+      - name: secondary_addressable_object_name
+        description: Secondary Addressable Object Name, typically a flat or unit identifier where applicable.
+
+      - name: postcode
+        description: The postcode associated with the property.
+
+      - name: street
+        description: The street associated with the property.
+
+      - name: locality
+        description: The locality associated with the property, where provided.
+
+      - name: town_city
+        description: The town or city associated with the property.
+
+      - name: district
+        description: The district associated with the property.
+
+      - name: county
+        description: The county associated with the property.
+
+      - name: price_paid_category
+        description: The HMLR Price Paid Data category assigned to the transaction.
+
+      - name: record_status
+        description: The record status supplied by HMLR.
+
+      - name: transaction_month
+        description: >
+          The first day of the month in which the property transaction completed,
+          derived from date_of_transfer.
+        data_tests:
+          - not_null
+
+      - name: transaction_year
+        description: >
+          The calendar year in which the property transaction completed,
+          derived from date_of_transfer.
+        data_tests:
+          - not_null

@@ -1,0 +1,16 @@
+name: "hmlr"
+version: "1.0.0"
+
+profile: "hmlr"
+
+model-paths:
+  - "models"
+
+models:
+  hmlr:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
